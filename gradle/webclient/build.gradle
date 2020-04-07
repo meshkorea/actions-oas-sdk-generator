@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+apply from: "../sdk-build.gradle"
+
+
+dependencies {
+    implementation 'io.swagger:swagger-annotations:1.5.22'
+    api "com.google.code.findbugs:jsr305:3.0.2"
+    api "org.springframework.boot:spring-boot-starter-webflux:$spring_boot_version"
+    api "org.openapitools:jackson-databind-nullable:0.2.0"
+}

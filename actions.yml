@@ -1,0 +1,19 @@
+# action.yml
+name: "OAS SDK Generator"
+description: "Generate and publish OAS SDK"
+inputs:
+  generator:
+    describe: kind of generator
+    required: true
+  github_token:
+    description: github token for deploy
+    required: true
+  spec_location: # id of input
+    description: "path of openapi spec file."
+    required: true
+outputs:
+  version:
+    describe: published version name
+runs:
+  using: "docker"
+  image: "Dockerfile"

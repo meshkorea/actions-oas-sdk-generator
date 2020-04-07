@@ -1,0 +1,10 @@
+group = 'net.meshkorea'
+version = project.getProperty('api_version')
+
+ext {
+    spring_boot_version = project.getProperty('spring_boot_version')
+    api_name = project.getProperty('api_name')
+    repo_url = System.getenv("MAVEN_REPO_URL")
+    repo_user = System.getenv("MAVEN_USERNAME")
+    repo_pass = System.getenv("MAVEN_PASSWORD")
+}

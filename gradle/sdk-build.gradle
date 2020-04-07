@@ -1,0 +1,55 @@
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir file("/openapi-generator/$api_name/src/main/java")
+        }
+    }
+}
+
+buildDir = "${rootProject.buildDir}/openapi/$api_name/build"
+
+task normalJar(type: Jar) {
+    from sourceSets.main.output
+}
+
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allSource
+}
+
+
+publishing {
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = rootProject.group
+            artifactId = "${api_name}-sdk-${project.name}".toString()
+            version = rootProject.version
+            artifact sourceJar
+            artifact normalJar
+        }
+    }
+
+    repositories {
+         maven {
+            url repo_url
+            credentials {
+                username repo_user
+                password repo_pass
+            }
+        }
+    }
+}
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+
+publish.dependsOn("normalJar")
+publish.dependsOn("sourceJar")
