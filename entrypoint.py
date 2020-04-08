@@ -85,12 +85,12 @@ def npm_deploy(directory):
     fd.flush()
     fd.close()
 
-    subprocess.run(args=["npm", "install"], cwd=directory,
-                   stdout=sys.stdout, stderr=sys.stderr)
-    subprocess.run(args=["npm", "run", "build"],
-                   cwd=directory, stdout=sys.stdout, stderr=sys.stderr)
-    subprocess.run(args=["npm", "publish"], cwd=directory,
-                   stdout=sys.stdout, stderr=sys.stderr)
+    subprocess.check_call(args=["npm", "install"], cwd=directory,
+                          stdout=sys.stdout, stderr=sys.stderr)
+    subprocess.check_call(args=["npm", "run", "build"],
+                          cwd=directory, stdout=sys.stdout, stderr=sys.stderr)
+    subprocess.check_call(args=["npm", "publish"], cwd=directory,
+                          stdout=sys.stdout, stderr=sys.stderr)
 
 
 def build_java_webclient():
@@ -152,7 +152,7 @@ def build_typescript_fetch():
         })
     )
     service_dir = "/openapi-generator/" + service_name
-    write_npm_pacakges_json(service_dir, f"{service_name}-fetch")
+    write_npm_pacakges_json(f"{service_dir}/package.json")
     npm_deploy(service_dir)
 
 
@@ -166,12 +166,11 @@ def build_typescript_axios():
         })
     )
     service_dir = "/openapi-generator/" + service_name
-    write_npm_pacakges_json(
-        f"{service_dir}/package.json", f"{service_name}-axios")
+    write_npm_pacakges_json(f"{service_dir}/package.json")
     npm_deploy(service_dir)
 
 
-def write_npm_pacakges_json(location, package_name):
+def write_npm_pacakges_json(location):
     content = {
         "name": f"@{github_owner}/{reponame}",
         "version": version,
@@ -188,11 +187,6 @@ def write_npm_pacakges_json(location, package_name):
         },
         "publishConfig": {
             "registry": "https://npm.pkg.github.com/"
-        },
-        "repository": {
-            "type": "git",
-            "url": f"ssh://git@github.com/{github_repository}.git",
-            "directory": f"packages/{package_name}"
         }
     }
     with open(location, "w") as f:
