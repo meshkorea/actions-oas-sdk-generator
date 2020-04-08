@@ -21,7 +21,7 @@ generator = os.getenv("INPUT_GENERATOR")
 
 
 def parse_version(location):
-    with open(location) as f:
+    with open(location, "r") as f:
         if re.match(".*\\.json", location):
             spec = json.load(f)
         else:
@@ -166,7 +166,8 @@ def build_typescript_axios():
         })
     )
     service_dir = "/openapi-generator/" + service_name
-    write_npm_pacakges_json(service_dir, f"{service_name}-axios")
+    write_npm_pacakges_json(
+        f"{service_dir}/package.json", f"{service_name}-axios")
     npm_deploy(service_dir)
 
 
@@ -195,7 +196,7 @@ def write_npm_pacakges_json(location, package_name):
         }
     }
     with open(location, "w") as f:
-        f.write(content)
+        f.write(json.dumps(content))
         f.flush()
 
 
