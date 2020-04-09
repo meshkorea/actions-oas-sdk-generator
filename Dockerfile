@@ -19,7 +19,7 @@ RUN mkdir /opt/gradle && \
   wget -q "https://downloads.gradle.org/distributions/gradle-5.6.2-bin.zip" -O "gradle-5.6.2-bin.zip" && \
   unzip -q -d /opt/gradle gradle-5.6.2-bin.zip && \
   mkdir /openapi-generator && \
-  wget -q https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/4.1.3/openapi-generator-cli-4.1.3.jar \
+  wget -q https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/4.3.0/openapi-generator-cli-4.3.0.jar \
   -O /openapi-generator/openapi-generator-cli.jar && \
   ln -s /opt/gradle/gradle-5.6.2/bin/gradle /usr/bin/gradle && \
   pip3 install --upgrade setuptools && \
