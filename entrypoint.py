@@ -147,6 +147,7 @@ def build_typescript_fetch():
         service_name, spec_loc, "typescript-fetch", None,
         # **gen_default_properties(), // todo remove model, api packages
         additional_properties=gen_additional_properties({
+            "npmName": f"@{github_owner}/{reponame}",
             "supportsES6": "true",
             "modelPropertyNaming": "original"
         })
@@ -161,6 +162,7 @@ def build_typescript_axios():
         service_name, spec_loc, "typescript-axios", None,
         # **gen_default_properties(), // todo remove model, api packages
         additional_properties=gen_additional_properties({
+            "npmName": f"@{github_owner}/{reponame}",
             "supportsES6": "true",
             "modelPropertyNaming": "original"
         })
