@@ -22,6 +22,7 @@ RUN mkdir /opt/gradle && \
   wget -q https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/4.3.1/openapi-generator-cli-4.3.1.jar \
   -O /openapi-generator/openapi-generator-cli.jar && \
   ln -s /opt/gradle/gradle-5.6.2/bin/gradle /usr/bin/gradle && \
+  pip3 install wheel && \
   pip3 install --upgrade setuptools && \
   pip3 install PyYAML 
 
