@@ -25,7 +25,7 @@ def parse_version(location):
         if re.match(".*\\.json", location):
             spec = json.load(f)
         else:
-            spec = yaml.load(f)
+            spec = yaml.load(f, Loader=yaml.FullLoader)
         return spec["info"]["version"]
 
 
