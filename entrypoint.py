@@ -181,8 +181,11 @@ def write_npm_pacakges_json(location):
         "main": "./dist/index.js",
         "typings": "./dist/index.d.ts",
         "scripts": {
-            "build": "tsc",
+            "build": "webpack -p",
             "prepare": "npm run build"
+        },
+        "dependencies": {
+            "webpack-cli": "^3.1.2"
         },
         "devDependencies": {
             "typescript": "^2.4"
